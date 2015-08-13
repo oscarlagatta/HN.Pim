@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{A5386AD9-7659-4AE0-B905-A5CE3B9AEA36}"
 EndProject
@@ -55,7 +55,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HN.Pim.Business.Tests", "HN
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Internationalization", "Internationalization", "{8FB0B4E7-1FBC-4123-B4B8-0C06711194E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HN.Pim.ResourceBuilder", "HN.Pim.ResourceBuilder\HN.Pim.ResourceBuilder.csproj", "{F1E4C85D-7C30-4C50-B1A1-A71CC93203C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HN.Pim.Resource.Builder", "HN.Pim.Resource.Builder\HN.Pim.Resource.Builder.csproj", "{F1E4C85D-7C30-4C50-B1A1-A71CC93203C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HN.Pim.Resources", "HN.Pim.Resources\HN.Pim.Resources.csproj", "{1CFC1595-17AD-4440-8199-5D97B5433BE8}"
 EndProject
