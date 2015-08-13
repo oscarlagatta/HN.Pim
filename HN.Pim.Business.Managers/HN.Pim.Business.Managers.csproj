@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{251CD71B-3237-460B-BFA5-C3BA56BEF06F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HN.Pim.Business.Managers</RootNamespace>
+    <AssemblyName>HN.Pim.Business.Managers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Managers\AccountManager.cs" />
+    <Compile Include="ManagerBase.cs" />
+    <Compile Include="Managers\CultureCountryCodeManager.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
+    <Compile Include="Managers\ResourceMasterManager.cs" />
+    <Compile Include="Managers\StyleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCartManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HN.Pim.Business.Common\HN.Pim.Business.Common.csproj">
+      <Project>{A5048BDB-DBEC-499E-8BD8-31A84B31B598}</Project>
+      <Name>HN.Pim.Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Business.Entities\HN.Pim.Business.Entities.csproj">
+      <Project>{A768587A-09E7-4104-B7DF-23E9BE0C87BC}</Project>
+      <Name>HN.Pim.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Business\HN.Pim.Business.csproj">
+      <Project>{23e7f38c-3266-4ce9-9f08-e9ea9b9ed2a4}</Project>
+      <Name>HN.Pim.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Common\HN.Pim.Common.csproj">
+      <Project>{832F7BAF-E4E1-479C-BB73-3EADCDA0BFBE}</Project>
+      <Name>HN.Pim.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Business.Contracts\HN.Pim.Business.Contracts.csproj">
+      <Project>{59F2FB9D-753E-4557-A1EC-B8122C3B63B0}</Project>
+      <Name>HN.Pim.Business.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Data.Contracts\HN.Pim.Data.Contracts.csproj">
+      <Project>{E0A92B00-E86A-47F2-AD49-6D9CEACB704E}</Project>
+      <Name>HN.Pim.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HN.Pim.Data\HN.Pim.Data.csproj">
+      <Project>{4991a05c-1f87-42bf-bb08-694113034c3a}</Project>
+      <Name>HN.Pim.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Common.Contracts\Core.Common.Contracts.csproj">
+      <Project>{5347D143-BF37-4C14-B2DF-ADEC44353FFB}</Project>
+      <Name>Core.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Common.ServiceModel\Core.Common.ServiceModel.csproj">
+      <Project>{19fe3042-c7fa-407a-b63c-d334d7614eed}</Project>
+      <Name>Core.Common.ServiceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj">
+      <Project>{4CFB08A6-BD3F-42AB-BDA3-A1A2647B3DB3}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

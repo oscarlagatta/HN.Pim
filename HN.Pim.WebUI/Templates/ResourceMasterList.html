@@ -1,0 +1,24 @@
+﻿<div ng-switch="viewMode">
+    <div ng-switch-when="resourcemasterlist">
+        <h3>Available Resources</h3>
+        <div ng-show="init && resourcemasters.length > 0">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="car in cars">
+                    <tr style="vertical-align: central">
+                        <td><a href="#" ng-click="selectresourcemaster(resourcemaster)">select</a></td>
+                        <td>{{ resourcemaster.Name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-show="init && resourcemaster.length == 0">
+            <h2>There are no available resources.</h2>
+        </div>
+    </div>
+</div>
