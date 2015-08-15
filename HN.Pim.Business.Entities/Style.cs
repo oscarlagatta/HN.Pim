@@ -12,8 +12,8 @@ namespace HN.Pim.Business.Entities
         public int MerretStyleID { get; set; }
         [DataMember]
         public string MerretDescription { get; set; }
-        [DataMember]
-        public Nullable<int> DeliveryInfoID { get; set; }
+        //[DataMember]
+        //public Nullable<int> DeliveryInfoID { get; set; }
 
         //[DataMember]
         //public virtual DeliveryInfo DeliveryInfo { get; set; }

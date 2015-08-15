@@ -45,6 +45,7 @@
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="ManagerBase.cs" />
     <Compile Include="Managers\CultureCountryCodeManager.cs" />
+    <Compile Include="Managers\MenuItemManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\ResourceMasterManager.cs" />
     <Compile Include="Managers\StyleManager.cs" />

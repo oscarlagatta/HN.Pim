@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Data Repositories\AccountRepository.cs" />
     <Compile Include="Data Repositories\CultureCountryCodeRepository.cs" />
+    <Compile Include="Data Repositories\MenuItemRepository.cs" />
     <Compile Include="Data Repositories\ProductRepository.cs" />
     <Compile Include="Data Repositories\ResourceMasterRepository.cs" />
     <Compile Include="DataRepositoryBase.cs" />

@@ -7,6 +7,7 @@ namespace HN.Pim.WebUI.Core
 {
     public class ViewControllerBase : Controller
     {
+
         List<IServiceContract> _DisposableServices;
 
         protected virtual void RegisterServices(List<IServiceContract> disposableServices)
@@ -29,7 +30,7 @@ namespace HN.Pim.WebUI.Core
             base.OnActionExecuting(filterContext);
 
             RegisterServices(DisposableServices);
-        }
+            }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {

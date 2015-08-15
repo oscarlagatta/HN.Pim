@@ -1,11 +1,19 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Web.Mvc;
+using HN.Pim.Client.Contracts;
+using HN.Pim.Client.Entities;
+using HN.Pim.WebUI.Core;
 
 namespace HN.Pim.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ViewControllerBase
     {
+
         public ActionResult Index()
         {
+            //IEnumerable<MenuItem> menuItems = _MenuItemService.GetAllMenuItems();
+
             return View();
         }
 

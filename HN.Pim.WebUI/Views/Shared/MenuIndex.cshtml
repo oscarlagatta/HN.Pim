@@ -1,0 +1,91 @@
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<HN.Pim.Client.Entities.MenuItem>
+<div class="container">
+    <div class="row">
+        <nav id="sideNavParent" class="hn-sn-wrapper">
+            <ul id="sideNavParent">
+                <li class="hn-sn-brand">
+                    <a href="Default.html"
+                       class="visible-sm visible-md visible-lg">PIM</a>
+                </li>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        @if (item.Menus.Any())
+                        {
+                            <ul id="@item.MenuAction" class="collapse" data-parent="#sideNavParent">
+                                @foreach (var subitem in item.Menus)
+                                {
+                                    <div class="visible-sm visible-md visible-lg">
+                                        <ul id="ulWoman" class="collapse"
+                                            data-parent="#sideNavParent">
+                                            <li>
+                                                <a href="@subitem.MenuAction">@subitem.MenuTitle</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <a href="@item.MenuAction"
+                               data-toggle="collapse"
+                               data-target="#ulWoman">
+                                <span class="visible-sm visible-md visible-lg">
+                                    @item.MenuTitle&nbsp;<b class="caret"></b>
+                                </span>
+                                <i class="fa fa-female visible-xs"></i>
+                            </a>
+                        }
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    </div>
+</div>
+@*<div class="navbar navbar-fixed-top">*@
+@*<div class="navbar-inner">
+    <div class="container">
+        <ul class="nav nav-pills pull-right">*@
+@*<li class="@if (ViewBag.Name == "Home")
+    {<text>active</text>}"><a href="@Url.Action("Index", "Home")">Home</a></li>*@
+@*<li class="dropdown @if (ViewBag.Name == "Login")
+    {<text>active</text>}">
+    @if (!Request.IsAuthenticated)
+    {
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Not Logged In <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("ForgotPassword", "Account")">Forgot Password</a></li>
+        </ul>
+    }
+    else
+    {
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.Name <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">*@
+@*<li><a href="#">My Account</a></li>
+    <li class="divider"></li>*@
+@*<li><a href="@Url.Action("ChangePassword", "Account")">Change Password</a></li>
+                <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>
+            </ul>
+        }
+    </li>*@
+@*@if (Request.IsAuthenticated)
+    {*@
+@*<li class="@if (ViewBag.Name == "CustomerActions")
+        {<text>active</text>}">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Actions <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="@Url.Action("ReserveProduct", "Customer")">Create Site</a></li>
+            <li><a href="@Url.Action("Index", "ResourceMaster")">Manage Resources</a></li>
+        </ul>
+    </li>*@
+@*}*@
+@*</ul>
+        </div>
+    </div>*@
+@*</div>*@

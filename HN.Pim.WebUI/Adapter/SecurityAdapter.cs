@@ -12,7 +12,7 @@ namespace HN.Pim.WebUI.Adapter
         public void Initialize()
         {
             if (!WebSecurity.Initialized)
-                WebSecurity.InitializeDatabaseConnection("eCommerceDb", "Account", "AccountId", "LoginEmail", autoCreateTables: true);
+                WebSecurity.InitializeDatabaseConnection("HN-Pim-Dev", "Account", "AccountId", "LoginEmail", autoCreateTables: true);
         }
 
         public void Register(string loginEmail, string password, object propertyValues)

@@ -25,11 +25,14 @@ namespace HN.Pim.ServiceHost.Console
 
             SM.ServiceHost hostStyleManger = new SM.ServiceHost(typeof(StyleManager));
 
+            SM.ServiceHost hostMenuItemManger = new SM.ServiceHost(typeof(MenuItemManager));
+
 
             /* More services to call  */
             StartService(hostProductManger, "ProductManager Host");
             StartService(hostResourceMasterManger, "ResourceMasterManager Host");
             StartService(hostCultureCountryCoderManger, "ResourceMasterManager Host");
+            StartService(hostMenuItemManger, "MenuItem Manager Host");
             StartService(hostStyleManger, "StyleManger Host");
 
             System.Timers.Timer timer = new System.Timers.Timer(10000);
@@ -49,7 +52,7 @@ namespace HN.Pim.ServiceHost.Console
             StopService(hostResourceMasterManger, "ResourceMasterManger Host");
             StopService(hostCultureCountryCoderManger, "ResourceMasterManger Host");
             StopService(hostStyleManger, "StyleManager Host");
-
+            StopService(hostMenuItemManger, "MenuItem Manager Host");
         }
 
         private static void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)

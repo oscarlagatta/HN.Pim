@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMenuItemEngine.cs" />
     <Compile Include="IProductEngine.cs" />
     <Compile Include="IResourceMasterEngine.cs" />
     <Compile Include="IStyleEngine.cs" />

@@ -19,7 +19,7 @@ namespace HN.Pim.Data
         public DbSet<ResourceMaster> ResourceMasterSet { get; set; }
         public DbSet<CultureCountryCode> CultureCountryCodeSet { get; set; }
         public DbSet<Account> AccountSet { get; set; }
-
+        public DbSet<MenuItem> MenuItemSet { get; set; }
         public DbSet<Style> StyleSet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,11 +30,13 @@ namespace HN.Pim.Data
             modelBuilder.Ignore<ExtensionDataObject>();
             modelBuilder.Ignore<IIdentifiableEntity>();
 
+            modelBuilder.Entity<MenuItem>().HasKey<int>(e => e.MenuId).Ignore(e => e.Menus);
+            modelBuilder.Entity<MenuItem>().HasKey<int>(e => e.MenuId).Ignore(e => e.EntityId);
             modelBuilder.Entity<Style>().HasKey<int>(e => e.MerretStyleID).Ignore(e => e.EntityId);
             modelBuilder.Entity<Product>().HasKey<int>(e => e.AccountId).Ignore(e => e.EntityId);
             modelBuilder.Entity<ResourceMaster>().HasKey<int>(e => e.ResourceId).Ignore(e => e.EntityId);
             modelBuilder.Entity<CultureCountryCode>().HasKey<int>(e => e.Id).Ignore(e => e.EntityId);
             modelBuilder.Entity<Account>().HasKey<int>(e => e.AccountId).Ignore(e => e.EntityId);
-        }
+    }
     }
 }
