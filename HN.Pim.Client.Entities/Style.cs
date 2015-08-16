@@ -1,4 +1,5 @@
-﻿using Core.Common.Core;
+﻿using System;
+using Core.Common.Core;
 
 namespace HN.Pim.Client.Entities
 {
@@ -358,13 +359,13 @@ namespace HN.Pim.Client.Entities
         //    set { _webAttribute10 = value; }
         //}
 
-        //private string _shortWebDescription;
+        private string _shortWebDescription;
 
-        //public string ShortWebDescription
-        //{
-        //    get { return _shortWebDescription; }
-        //    set { _shortWebDescription = value; }
-        //}
+        public string ShortWebDescription
+        {
+            get { return _shortWebDescription; }
+            set { _shortWebDescription = value; }
+        }
 
         //private string _longWebDescription;
 
@@ -390,21 +391,21 @@ namespace HN.Pim.Client.Entities
         //    set { _live = value; }
         //}
 
-        //private Nullable<decimal> _minPrice;
+        private Nullable<decimal> _minPrice;
 
-        //public Nullable<decimal> MinPrice
-        //{
-        //    get { return _minPrice; }
-        //    set { _minPrice = value; }
-        //}
+        public Nullable<decimal> MinPrice
+        {
+            get { return _minPrice; }
+            set { _minPrice = value; }
+        }
 
-        //private Nullable<decimal> _maxPrice;
+        private Nullable<decimal> _maxPrice;
 
-        //public Nullable<decimal> MaxPrice
-        //{
-        //    get { return _maxPrice; }
-        //    set { _maxPrice = value; }
-        //}
+        public Nullable<decimal> MaxPrice
+        {
+            get { return _maxPrice; }
+            set { _maxPrice = value; }
+        }
 
         //private Nullable<decimal> _overrideMerretVAT;
 

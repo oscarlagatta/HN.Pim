@@ -8,6 +8,7 @@ using HN.Pim.Client.Contracts;
 using HN.Pim.Client.Entities;
 using HN.Pim.WebUI.Core;
 using HN.Pim.WebUI.Models;
+using System.Linq.Dynamic;
 
 namespace HN.Pim.WebUI.Controllers.MVC
 {
@@ -24,25 +25,51 @@ namespace HN.Pim.WebUI.Controllers.MVC
 
         IStyleService _StyleService;
 
+
         [System.Web.Mvc.HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(StyleModel vm)
         {
             try
             {
-                //var style = _StyleService.GetStyle(10735);
+                vm.Init();
 
-                Style[] styles = _StyleService.GetAllStyles();
+                vm.Styles = _StyleService.GetAllStyles().Take(20).ToList();
 
-                var styleModel = styles.Select(description => new StyleModel()
-                {
-                    MerretDescription = description.ToString()
-                });
-                return View(styleModel);
+                return View(vm);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
+
+        [System.Web.Mvc.HttpGet]
+        public ActionResult SearchAction(StyleModel vm)
+        {
+            try
+            {
+                switch (vm.EventCommand)
+                {
+                    case "sort":
+                        {
+                            vm.SetSortDirection();
+                            vm.Styles = _StyleService.GetAllStyles().Take(30).ToList();
+                            if (!string.IsNullOrEmpty(vm.SortExpression))
+                            {
+                                vm.Styles = vm.Sort<Style>(vm.Styles.AsQueryable<Style>());
+                            }
+                            break;
+                        }
+                }
+
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

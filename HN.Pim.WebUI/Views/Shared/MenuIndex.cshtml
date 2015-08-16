@@ -1,50 +1,203 @@
-﻿@using Microsoft.Ajax.Utilities
-@model IEnumerable<HN.Pim.Client.Entities.MenuItem>
-<div class="container">
-    <div class="row">
-        <nav id="sideNavParent" class="hn-sn-wrapper">
-            <ul id="sideNavParent">
-                <li class="hn-sn-brand">
-                    <a href="Default.html"
-                       class="visible-sm visible-md visible-lg">PIM</a>
-                </li>
-                @foreach (var item in Model)
-                {
-                    <li>
-                        @if (item.Menus.Any())
-                        {
-                            <ul id="@item.MenuAction" class="collapse" data-parent="#sideNavParent">
-                                @foreach (var subitem in item.Menus)
-                                {
-                                    <div class="visible-sm visible-md visible-lg">
-                                        <ul id="ulWoman" class="collapse"
-                                            data-parent="#sideNavParent">
-                                            <li>
-                                                <a href="@subitem.MenuAction">@subitem.MenuTitle</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <a href="@item.MenuAction"
-                               data-toggle="collapse"
-                               data-target="#ulWoman">
-                                <span class="visible-sm visible-md visible-lg">
-                                    @item.MenuTitle&nbsp;<b class="caret"></b>
-                                </span>
-                                <i class="fa fa-female visible-xs"></i>
-                            </a>
-                        }
-                    </li>
-                }
+﻿@model IEnumerable<HN.Pim.Client.Entities.MenuItem>
 
-            </ul>
-        </nav>
-    </div>
-</div>
+<nav class="hn-sn-wrapper">
+    <ul id="sideNavParent">
+            <li class="pdsa-sn-brand">
+                <a href="/Home/Index">PIM</a>
+            </li>
+           @foreach (var item in Model)
+           {
+            <li>
+                @if (item.Menus.Count() > 0)
+                {
+                    <a href="#"
+                       data-toggle="collapse"
+                       data-target="#@item.MenuAction">
+                        @item.MenuTitle.TrimStart().TrimEnd()
+                    <span class="caret"></span>
+                </a>
+                <ul id="@item.MenuAction" class="collapse" data-parent="#sideNavParent">
+                    @foreach (var subitem in item.Menus)
+                    {
+                        <li>
+                            <a href="@subitem.MenuAction">@subitem.MenuTitle</a>
+                        </li>
+                    }
+                </ul>
+                }
+                else
+                {
+                    <a href="@item.MenuAction">@item.MenuTitle</a>
+                }
+            </li>
+           }
+        </ul>
+</nav>
+
+@*<nav id="sideNavParent" class="hn-sn-wrapper">
+        <ul id="sideNavParent">
+            <li class="hn-sn-brand">
+                <a href="Default.html"
+                   class="visible-sm visible-md visible-lg">PIM</a>
+            </li>
+            <li>
+                <a href="#"
+                   data-toggle="collapse"
+                   data-target="#ulWoman">
+                    <span class="visible-sm visible-md visible-lg">
+                        Photography&nbsp;<b class="caret"></b>
+                    </span>
+                    <i class="fa fa-female visible-xs"></i>
+                </a>
+                <div class="visible-sm visible-md visible-lg">
+                    <ul id="ulWoman" class="collapse"
+                        data-parent="#sideNavParent">
+                        <li>
+                            <a href="#">Scan Into Studio</a>
+                        </li>
+                        <li>
+                            <a href="#">Scan Into Styling</a>
+                        </li>
+                        <li>
+                            <a href="#">Scan Out of Studio</a>
+                        </li>
+                        <li>
+                            <a href="#">Scan Search</a>
+                        </li>
+                        <li>
+                            <a href="#">Search</a>
+                        </li>
+                        <li>
+                            <a href="#">Styled With</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="visible-sm visible-md visible-lg">DC</span>
+                    <i class="fa fa-arrow-circle-o-down visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   data-toggle="collapse"
+                   data-target="#ulMan">
+                    <span class="visible-sm visible-md visible-lg">
+                        DC&nbsp;<b class="caret"></b>
+                    </span>
+                    <i class="fa fa-male visible-xs"></i>
+                </a>
+                <div class="visible-sm visible-md visible-lg">
+                    <ul id="ulMan" class="collapse"
+                        data-parent="#sideNavParent">
+                        <li>
+                            <a href="#">ALL CLOTHING</a>
+                        </li>
+                        <li>
+                            <a href="#">ALL SHOES</a>
+                        </li>
+                        <li>
+                            <a href="#">ALL ACCESSORIES</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="visible-sm visible-md visible-lg">Merchandising</span>
+                    <i class="fa fa-arrow-circle-o-down visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="Default.html">
+                    <span class="visible-sm visible-md visible-lg">Marketing</span>
+                    <i class="glyphicon glyphicon-apple visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="Default.html">
+                    <span class="visible-sm visible-md visible-lg">LIVE</span>
+                    <i class="glyphicon glyphicon-bishop visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="Default.html">
+                    <span class="visible-sm visible-md visible-lg">PIM Styles</span>
+                    <i class="glyphicon glyphicon-film visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="Default.html">
+                    <span class="visible-sm visible-md visible-lg">Universal Sizing</span>
+                    <i class="glyphicon glyphicon-magnet visible-xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   data-toggle="collapse"
+                   data-target="#ulUtil">
+                    <span class="visible-sm visible-md visible-lg">
+                        Admin&nbsp;<b class="caret"></b>
+                    </span>
+                    <i class="fa fa-male visible-xs"></i>
+                </a>
+                <div class="visible-sm visible-md visible-lg">
+                    <ul id="ulUtil" class="collapse"
+                        data-parent="#sideNavParent">
+                        <li>
+                            <a href="#">Admin</a>
+                        </li>
+                        <li>
+                            <a href="#">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#">Saved Searches</a>
+                        </li>
+                        <li>
+                            <a href="#">Bulk Update</a>
+                        </li>
+                        <li>
+                            <a href="#">View Queue</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               data-toggle="collapse"
+                               data-target="#ulReports">
+                                <span class="visible-sm visible-md visible-lg">
+                                    Reports&nbsp;<b class="caret"></b>
+                                </span>
+                                <i class="fa fa-male visible-xs"></i>
+                            </a>
+                            <div class="visible-sm visible-md visible-lg">
+                                <ul id="ulReports" class="collapse"
+                                    data-parent="#sideNavParent">
+                                    <li>
+                                        <a href="#">Markdown reports</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Colours to be created on Magento</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Styles turnaround</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Product count in Live bucket for each Category</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Live products with/without images on Magento</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>*@
+
+
 @*<div class="navbar navbar-fixed-top">*@
 @*<div class="navbar-inner">
     <div class="container">

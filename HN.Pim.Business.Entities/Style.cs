@@ -43,18 +43,18 @@ namespace HN.Pim.Business.Entities
         //public string WebAttribute9 { get; set; }
         //[DataMember]
         //public string WebAttribute10 { get; set; }
-        //[DataMember]
-        //public string ShortWebDescription { get; set; }
+        [DataMember]
+        public string ShortWebDescription { get; set; }
         //[DataMember]
         //public string LongWebDescription { get; set; }
         //[DataMember]
         //public Nullable<int> StyleTemplateID { get; set; }
         //[DataMember]
         //public bool Live { get; set; }
-        //[DataMember]
-        //public Nullable<decimal> MinPrice { get; set; }
-        //[DataMember]
-        //public Nullable<decimal> MaxPrice { get; set; }
+        [DataMember]
+        public Nullable<decimal> MinPrice { get; set; }
+        [DataMember]
+        public Nullable<decimal> MaxPrice { get; set; }
         //[DataMember]
         //public Nullable<bool> OverrideMerretVAT { get; set; }
         //[DataMember]
