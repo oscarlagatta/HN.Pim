@@ -33,7 +33,7 @@ namespace HN.Pim.WebUI.Controllers.MVC
             {
                 vm.Init();
 
-                vm.Styles = _StyleService.GetAllStyles().Take(20).ToList();
+                vm.Styles = _StyleService.GetAllStyles().ToList();
 
                 return View(vm);
             }

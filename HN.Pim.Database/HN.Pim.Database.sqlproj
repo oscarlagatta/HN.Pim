@@ -74,6 +74,7 @@
     <Build Include="dbo\Tables\Style.sql" />
     <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\MenuItem.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HN.Pim.Database.publish.xml" />
