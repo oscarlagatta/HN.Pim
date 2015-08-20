@@ -172,6 +172,11 @@
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\AccountRegisterModel.cs" />
     <Compile Include="Models\MenuItemManager.cs" />
+    <Compile Include="Models\Pager.cs" />
+    <Compile Include="Models\PagerCommands.cs" />
+    <Compile Include="Models\PagerItem.cs" />
+    <Compile Include="Models\PagerItemCollection.cs" />
+    <Compile Include="Models\PagerModel.cs" />
     <Compile Include="Models\ResourceMasterModel.cs" />
     <Compile Include="Models\StyleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

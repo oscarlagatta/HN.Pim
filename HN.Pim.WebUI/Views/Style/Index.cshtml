@@ -1,9 +1,10 @@
-﻿@model HN.Pim.WebUI.Models.StyleModel
+﻿@using HN.Pim.WebUI.Models
+@model HN.Pim.WebUI.Models.StyleModel
 @{
     ViewBag.Title = "Styles";
 }
 
-@using (Html.BeginForm("SearchAction", "Style"))
+@using (Html.BeginForm())
 {
   <!-- BEGIN HIDDEN FIELDS AREA -->
     @Html.HiddenFor(m => m.EventCommand)
@@ -13,106 +14,125 @@
     @Html.HiddenFor(m => m.SortDirectionNew)
   <!-- END HIDDEN FIELDS AREA -->
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-condensed table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            <a href="#"
-                               data-hn-action="sort"
-                               data-hn-val="MerretStyleID"
-                               data-hn-direction="Ascending">
-                                Style Id
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#"
-                               data-hn-action="sort"
-                               data-hn-val="MerretDescription"
-                               data-hn-direction="Ascending">
-                                Description
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#"
-                               data-hn-action="sort"
-                               data-hn-val="ShortWebDescription"
-                               data-hn-direction="Ascending">
-                                Web Description
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#"
-                               data-hn-action="sort"
-                               data-hn-val="MinPrice"
-                               data-hn-direction="Descending">
-                                Min Price
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#"
-                               data-hn-action="sort"
-                               data-hn-val="MaxPrice"
-                               data-hn-direction="Descending">
-                                Max Price
-                            </a>
-                             
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="#"
+                                   data-hn-action="sort"
+                                   data-hn-val="MerretStyleID"
+                                   data-hn-direction="Ascending">
+                                    Style Id
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#"
+                                   data-hn-action="sort"
+                                   data-hn-val="MerretDescription"
+                                   data-hn-direction="Ascending">
+                                    Description
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#"
+                                   data-hn-action="sort"
+                                   data-hn-val="ShortWebDescription"
+                                   data-hn-direction="Ascending">
+                                    Web Description
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#"
+                                   data-hn-action="sort"
+                                   data-hn-val="MinPrice"
+                                   data-hn-direction="Descending">
+                                    Min Price
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#"
+                                   data-hn-action="sort"
+                                   data-hn-val="MaxPrice"
+                                   data-hn-direction="Descending">
+                                    Max Price
+                                </a>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach (var item in Model.Styles)
                     {
-                        <tr>
-                            <td>
-                                @item.MerretStyleID
-                            </td>
-                            <td>
-                                @item.MerretDescription
-                            </td>
-                            <td>
-                                @item.ShortWebDescription
-                            </td>
-                            <td>
-                                
-                                @if(item.MinPrice.HasValue)
-                                    {@item.MinPrice.Value.ToString("c")}
-                            </td>
-                                     <td>
-                                         @if (item.MaxPrice.HasValue)
-                                         {@item.MaxPrice.Value.ToString("c")}
-                                     </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    @item.MerretStyleID
+                                </td>
+                                <td>
+                                    @item.MerretDescription
+                                </td>
+                                <td>
+                                    @item.ShortWebDescription
+                                </td>
+                                <td>
+
+                                    @if (item.MinPrice.HasValue)
+                                {@item.MinPrice.Value.ToString("c")
+                                }
+                                </td>
+                                <td>
+                                    @if (item.MaxPrice.HasValue)
+                                {@item.MaxPrice.Value.ToString("c")
+                                }
+                                </td>
+                            </tr>
                     }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
+            @*@if (Model.IsPagerVisible)
+            {
+                <ul class="pagination pagination-sm">
+                @foreach (PagerItem item in Model.Pages)
+                {
+                        <li class="@item.CssClass">
+                            <a href="#"
+                                data-hn-action="page"
+                                data-hn-val="@item.Argument"
+                                title="@item.Tooltip">
+                                @Html.Raw(item.Text)
+                            </a>
+                        </li>
+                }
+                </ul>
+            }*@
         </div>
     </div>
-</div>
 
 }
 
 @section scripts {
     <script>
-    $(document).ready(function () {
-      // Connect to any elements that have 'data-pdsa-action'
-      $("[data-hn-action]").on("click", function (event) {
-        event.preventDefault();
+        $(document).ready(function () {
+            // Connect to any elements that have 'data-pdsa-action'
+            $("[data-hn-action]").on("click", function (event) {
+                event.preventDefault();
 
-        // Fill in the action to post back to view model
-        $("#EventCommand").val($(this).data("data-hn-action"));
-        // Store the last sort expression
-        $("#LastSortExpression").val($("#SortExpression").val());
-        // Get the new sort expression
-        $("#SortExpression").val($(this).data("hn-val"));
-        // Set the new sort direction
-        $("#SortDirectionNew").val($(this).data("hn-direction"));
+                // Fill in the action to post back to view model
+                $("#EventCommand").val($(this).data("hn-action"));
+                // Store the last sort expression
+                $("#LastSortExpression").val($("#SortExpression").val());
+                // Get the new sort expression
+                $("#SortExpression").val($(this).data("hn-val"));
+                // Set the new sort direction
+                $("#SortDirectionNew").val($(this).data("hn-direction"));
 
-        // Submit form with hidden values filled in
-        $("form").submit();
-      });
-    });
+                // Submit form with hidden values filled in
+                $("form").submit();
+            });
+        });
     </script>
 }

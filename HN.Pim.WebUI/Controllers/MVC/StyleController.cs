@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Web;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using HN.Pim.Client.Contracts;
 using HN.Pim.Client.Entities;
 using HN.Pim.WebUI.Core;
 using HN.Pim.WebUI.Models;
-using System.Linq.Dynamic;
 
 namespace HN.Pim.WebUI.Controllers.MVC
 {
@@ -24,37 +22,22 @@ namespace HN.Pim.WebUI.Controllers.MVC
         }
 
         IStyleService _StyleService;
-
-
-        [System.Web.Mvc.HttpGet]
+       
         public ActionResult Index(StyleModel vm)
         {
             try
             {
-                vm.Init();
+                if (string.IsNullOrEmpty(vm.EventCommand))
+                {
+                    Init(vm);
+                }
 
-                vm.Styles = _StyleService.GetAllStyles().ToList();
-
-                return View(vm);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        [System.Web.Mvc.HttpGet]
-        public ActionResult SearchAction(StyleModel vm)
-        {
-            try
-            {
                 switch (vm.EventCommand)
                 {
                     case "sort":
                         {
                             vm.SetSortDirection();
-                            vm.Styles = _StyleService.GetAllStyles().Take(30).ToList();
+                            vm.Styles = _StyleService.GetAllStyles().Take(20).ToList();
                             if (!string.IsNullOrEmpty(vm.SortExpression))
                             {
                                 vm.Styles = vm.Sort<Style>(vm.Styles.AsQueryable<Style>());
@@ -63,6 +46,8 @@ namespace HN.Pim.WebUI.Controllers.MVC
                         }
                 }
 
+                ModelState.Clear();
+
                 return View(vm);
             }
             catch (Exception ex)
@@ -71,5 +56,16 @@ namespace HN.Pim.WebUI.Controllers.MVC
             }
         }
 
+        private  void Init(StyleModel vm)
+        {
+            vm.EventCommand = string.Empty;
+            vm.IsPagerVisible = true;
+            // initial sort expression
+            vm.EventCommand = "sort";
+            vm.SortExpression = "MerretDescription";
+            vm.SortDirection = SortDirection.Ascending;
+            vm.LastSortExpression = string.Empty;
+            vm.SortDirectionNew = SortDirection.Ascending;
+        }
     }
 }
