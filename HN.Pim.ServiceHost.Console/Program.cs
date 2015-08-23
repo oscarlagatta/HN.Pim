@@ -35,9 +35,9 @@ namespace HN.Pim.ServiceHost.Console
             StartService(hostMenuItemManger, "MenuItem Manager Host");
             StartService(hostStyleManger, "StyleManger Host");
 
-            System.Timers.Timer timer = new System.Timers.Timer(10000);
-            timer.Elapsed += OnTimerElapsed;
-            timer.Start();
+            //System.Timers.Timer timer = new System.Timers.Timer(10000);
+            //timer.Elapsed += OnTimerElapsed;
+            //timer.Start();
 
             System.Console.WriteLine("PIM Monitor has started.");
 
@@ -45,7 +45,7 @@ namespace HN.Pim.ServiceHost.Console
             System.Console.WriteLine("Press [Enter] to exit.");
             System.Console.ReadLine();
 
-            timer.Stop();
+            //timer.Stop();
             System.Console.WriteLine("PIM Monitor stopped.");
 
             StopService(hostProductManger, "AccountManager Host");

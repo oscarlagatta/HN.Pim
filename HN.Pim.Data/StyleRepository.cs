@@ -3,6 +3,12 @@ using System.ComponentModel.Composition;
 using HN.Pim.Business.Entities;
 using HN.Pim.Data.Contracts.Repository_Interfaces;
 using System.Linq;
+using Core.Common.Data;
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace HN.Pim.Data
 {
@@ -39,6 +45,15 @@ namespace HN.Pim.Data
             return results;
         }
 
+        public int GetTotalOfStyles()
+        {
+            using (PimContext entityContext = new PimContext())
+            {
+                var query = (from e in entityContext.StyleSet
+                             select e);
 
+                return query.Count();
+            }
+        }
     }
 }

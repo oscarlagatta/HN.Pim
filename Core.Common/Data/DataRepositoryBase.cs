@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Core.Common.Contracts;
 using Core.Common.Utils;
 
@@ -56,7 +59,6 @@ namespace Core.Common.Data
                 T existingEntity = UpdateEntity(entityContext, entity);
 
                 SimpleMapper.PropertyMap(entity, existingEntity);
-
                 entityContext.SaveChanges();
                 return existingEntity;
             }
@@ -72,6 +74,77 @@ namespace Core.Common.Data
         {
             using (U entityContext = new U())
                 return GetEntity(entityContext, id);
+        }
+
+     
+         
+        public IEnumerable Get(
+            int? page = 0,
+            int? pageSize = null,
+            string[] includePaths = null,
+            Expression<Func<T, bool>> filter = null,
+            params ISortExpression<T>[] sortExpressions)
+        {
+            using (U entityContext = new U())
+            {
+                var query = entityContext.Set<T>() as IQueryable<T>;
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+
+                if (includePaths != null)
+                {
+                    for (var i = 0; i < includePaths.Count(); i++)
+                    {
+                        query = query.Include(includePaths[i]);
+                    }
+                }
+
+                if (sortExpressions != null)
+                {
+                    IOrderedQueryable<T> orderedQuery = null;
+                    for (var i = 0; i < sortExpressions.Count(); i++)
+                    {
+                        if (i == 0)
+                        {
+                            if (sortExpressions[i].SortDirection == ListSortDirection.Ascending)
+                            {
+                                orderedQuery = query.OrderBy(sortExpressions[i].SortBy);
+                            }
+                            else
+                            {
+                                orderedQuery = query.OrderByDescending(sortExpressions[i].SortBy);
+                            }
+                        }
+                        else
+                        {
+                            if (sortExpressions[i].SortDirection == ListSortDirection.Ascending)
+                            {
+                                orderedQuery = orderedQuery.ThenBy(sortExpressions[i].SortBy);
+                            }
+                            else
+                            {
+                                orderedQuery = orderedQuery.ThenByDescending(sortExpressions[i].SortBy);
+                            }
+
+                        }
+                    }
+
+                    if (page != null)
+                    {
+                        query = orderedQuery.Skip(((int)++page - 1) * (int)pageSize);
+                    }
+                }
+
+                if (pageSize != null)
+                {
+                    query = query.Take((int)pageSize);
+                }
+
+                return query.ToList();
+            }
         }
     }
 

@@ -48,6 +48,7 @@
     <Compile Include="IIdentifiableEntity.cs" />
     <Compile Include="IServiceContract.cs" />
     <Compile Include="IServiceFactory.cs" />
+    <Compile Include="ISortExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

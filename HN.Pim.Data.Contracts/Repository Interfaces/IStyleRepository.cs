@@ -5,6 +5,6 @@ namespace HN.Pim.Data.Contracts.Repository_Interfaces
 {
     public interface IStyleRepository : IDataRepository<Style>
     {
-
+        int GetTotalOfStyles();
     }
 }

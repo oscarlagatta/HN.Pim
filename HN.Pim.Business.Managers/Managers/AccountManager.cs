@@ -29,8 +29,8 @@ namespace HN.Pim.Business.Managers.Managers
 
         #region IAccountService operations
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.eCommerceAdminRole)]
-        [PrincipalPermission(SecurityAction.Demand, Name = Security.eCommerceUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.HnPrimAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.HnPimUser)]
         public Account GetCustomerAccountInfo(string loginEmail)
         {
             return ExecuteFaultHandledOperation(() =>
@@ -51,8 +51,8 @@ namespace HN.Pim.Business.Managers.Managers
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.eCommerceAdminRole)]
-        [PrincipalPermission(SecurityAction.Demand, Name = Security.eCommerceUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.HnPrimAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.HnPimUser)]
         public void UpdateCustomerAccountInfo(Account account)
         {
             ExecuteFaultHandledOperation(() =>

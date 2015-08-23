@@ -165,6 +165,7 @@
     <Compile Include="Core\UIHelper.cs" />
     <Compile Include="Core\UsesDisposableServiceAttribute.cs" />
     <Compile Include="Core\ViewControllerBase.cs" />
+    <Compile Include="Core\ViewModelBaseSimple.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1012,6 +1013,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\jquery.twbsPagination.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

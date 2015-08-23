@@ -4,9 +4,9 @@
     /// This class contains Pager commands for moving through a pager.
     /// It also contains the Text for displaying pager information.
     /// </summary>
-    public class PagerCommands
+    public static class PagerCommands
     {
-        public PagerCommands()
+        static PagerCommands()
         {
             FirstTooltipText = "First Page";
             PreviousTooltipText = "Previous Page";

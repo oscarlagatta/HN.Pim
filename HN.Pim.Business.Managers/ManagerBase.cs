@@ -56,7 +56,7 @@ namespace HN.Pim.Business.Managers
 
         protected void ValidateAuthorization(IAccountOwnedEntity entity)
         {
-            if (!Thread.CurrentPrincipal.IsInRole(Security.eCommerceAdminRole))
+            if (!Thread.CurrentPrincipal.IsInRole(Security.HnPrimAdminRole))
             {
                 if (_AuthorizationAccount != null)
                 {

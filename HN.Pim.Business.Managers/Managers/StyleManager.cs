@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Linq.Expressions;
 using System.ServiceModel;
 using Core.Common.Contracts;
+using Core.Common.Data;
 using Core.Common.Exceptions;
+using HN.Pim.Business.Common;
 using HN.Pim.Business.Contracts;
 using HN.Pim.Business.Entities;
 using HN.Pim.Data.Contracts.Repository_Interfaces;
@@ -18,6 +23,8 @@ namespace HN.Pim.Business.Managers.Managers
         [Import]
         private IDataRepositoryFactory _dataRepositoryFactory;
 
+        [Import]
+        IBusinessEngineFactory _businessEngineFactory;
 
         public StyleManager()
         {
@@ -27,6 +34,12 @@ namespace HN.Pim.Business.Managers.Managers
         public StyleManager(IDataRepositoryFactory dataRepositoryFactory)
         {
             _dataRepositoryFactory = dataRepositoryFactory;
+        }
+
+        public StyleManager(IDataRepositoryFactory dataRepositoryFactory, IBusinessEngineFactory businessEngineFactory)
+        {
+            _dataRepositoryFactory = dataRepositoryFactory;
+            _businessEngineFactory = businessEngineFactory;
         }
 
         public Style GetStyle(int MerretStleID)
@@ -61,6 +74,34 @@ namespace HN.Pim.Business.Managers.Managers
                 return styles.ToArray();
             });
         }
+
+        public Style[] GetPagedStyles(
+               int? page,
+               int? pageSize = null,
+               string[] includePaths = null,
+               string[] filter = null,
+               string[] sortExpression = null
+               )
+        {
+            return ExecuteFaultHandledOperation(() =>
+            {
+                IStyleEngine styleEngine = _businessEngineFactory.GetBusinessEngine<IStyleEngine>();
+
+                //ICollection<ISortExpression<Style>> sortExpressions = null;
+
+                //if (sortExpression != null)
+                //{
+                //    for (var i = 0; i < sortExpression.Count(); i++)
+                //    {
+                       
+                //    }
+                //}
+                Style[] pagedStyles = styleEngine.GetPagedStyles(page, pageSize, includePaths, null, new SortExpression<Style>(s => s.MerretDescription, ListSortDirection.Ascending));
+
+                return pagedStyles;
+            });
+        }
+
 
         [OperationBehavior(TransactionScopeRequired = true)]
         public Style UpdateStyle(Style style)
@@ -97,6 +138,16 @@ namespace HN.Pim.Business.Managers.Managers
                 }
 
                 styleRepository.Remove(MerretStleID);
+            });
+        }
+
+        public int GetTotalOfStyles()
+        {
+            return ExecuteFaultHandledOperation(() =>
+            {
+                var styleRepository = _dataRepositoryFactory.GetDataRepository<IStyleRepository>();
+
+                return styleRepository.GetTotalOfStyles();
             });
         }
     }

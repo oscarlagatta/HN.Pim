@@ -19,6 +19,23 @@ namespace HN.Pim.Client.Proxies
             return Channel.GetAllStyles();
         }
 
+        public Style[] GetPagedStyles(
+            int? page, 
+            int? pageSize = null, 
+            string[] includePaths = null,
+            string[] filter = null,
+            string[] sortExpression = null
+            )
+        {
+            return Channel.GetPagedStyles(
+                page,
+                pageSize,
+                includePaths,
+                filter,
+                sortExpression
+                );
+        }
+
         public Style UpdateStyle(Style style)
         {
             return Channel.UpdateStyle(style);
@@ -27,6 +44,16 @@ namespace HN.Pim.Client.Proxies
         public void DeleteStyle(int MerretStleID)
         {
             Channel.DeleteStyle(MerretStleID);
+        }
+
+        /// <summary>
+        /// Get Total quantity of style
+        /// records
+        /// </summary>
+        /// <returns></returns>
+        public int GetTotalOfStyles()
+        {
+            return Channel.GetTotalOfStyles();
         }
     }
 }

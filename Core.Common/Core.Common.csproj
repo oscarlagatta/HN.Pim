@@ -56,6 +56,7 @@
     <Compile Include="Core\NotNavigableAttribute.cs" />
     <Compile Include="Core\ObjectBase.cs" />
     <Compile Include="Data\DataRepositoryBase.cs" />
+    <Compile Include="Data\SortExpression.cs" />
     <Compile Include="Extensions\MefExtensions.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Extensions\CoreExtensions.cs" />

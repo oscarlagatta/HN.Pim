@@ -2,8 +2,8 @@
 {
     public static class Security
     {
-        public const string eCommerceUser = "eCommerceUser";
+        public const string HnPimUser = "HnPimUser";
 
-        public const string eCommerceAdminRole = "eCommerceAdmin";
+        public const string HnPrimAdminRole = "HnPrimAdminRole";
     }
 }

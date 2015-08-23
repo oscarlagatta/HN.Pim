@@ -1,22 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
-using HN.Pim.Client.Entities;
 using System.Linq.Dynamic;
-using HN.Pim.Client.Contracts;
-using HN.Pim.WebUI.Core;
+using HN.Pim.Client.Entities;
+using HN.Pim.WebUI.Models;
 
-namespace HN.Pim.WebUI.Models
+namespace HN.Pim.WebUI.Core
 {
-    public class StyleModel 
+    public class ViewModelBaseSimple
     {
-        public StyleModel()
+        #region Constructor
+        public ViewModelBaseSimple()
         {
-            
             Init();
         }
-
-        public List<Style> Styles { get; set; }
+        #endregion
 
         #region Public Properties
         /// <summary>
@@ -55,10 +52,6 @@ namespace HN.Pim.WebUI.Models
         /// Get/Set any parameters for the current command executed. This could be a page number for paging, etc.
         /// </summary>
         public string EventArgument { get; set; }
-
-        public int QuantityOfRecords { get; set; }
-
-        public int QuantityOfPages { get; set; }
         #endregion
 
         #region Init Method
@@ -78,7 +71,7 @@ namespace HN.Pim.WebUI.Models
         #endregion
 
         #region SetSortDirection Method
-        public  virtual void SetSortDirection()
+        protected virtual void SetSortDirection()
         {
             if (SortExpression == LastSortExpression)
             {
@@ -108,14 +101,13 @@ namespace HN.Pim.WebUI.Models
         #endregion
 
         #region HandleRequest Method
-        //public virtual void HandleRequest()
-        //{
-        //}
+        public virtual void HandleRequest()
+        {
+        }
         #endregion
 
         #region SetPagerObject Method
-
-        public virtual void SetPagerObject(int totalRecords)
+        protected virtual void SetPagerObject(int totalRecords)
         {
             // Set Pager Information
             Pager.TotalRecords = totalRecords;

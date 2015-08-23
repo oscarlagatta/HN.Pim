@@ -54,8 +54,8 @@ namespace HN.Pim.Business.Managers
         [Import]
         IBusinessEngineFactory _businessEngineFactory;
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.eCommerceAdminRole)]
-        [PrincipalPermission(SecurityAction.Demand, Name = Security.eCommerceUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.HnPrimAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.HnPimUser)]
         public IEnumerable<SalesOrder> GetSalesOrderHistory(string loginEmail)
         {
 

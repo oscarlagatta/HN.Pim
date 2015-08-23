@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Core.Common.Contracts
 {
@@ -21,5 +24,15 @@ namespace Core.Common.Contracts
         IEnumerable<T> Get();
 
         T Get(int id);
+
+        IEnumerable Get(
+            int? page = 0,
+            int? pageSize = null,
+            string[] includePaths = null,
+            Expression<Func<T, bool>> filter = null,
+            params ISortExpression<T>[] sortExpressions
+            );
+
+        
     }
 }
