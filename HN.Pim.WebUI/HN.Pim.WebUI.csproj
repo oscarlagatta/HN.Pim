@@ -203,6 +203,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\hn-readme-box.css" />
+    <Content Include="Content\hn-progress.css" />
     <Content Include="Content\hn-sidebar.css" />
     <Content Include="Content\hn-summary-block.css" />
     <Content Include="Content\site-positioning.css" />

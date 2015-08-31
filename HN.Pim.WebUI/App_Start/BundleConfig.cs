@@ -31,6 +31,7 @@ namespace HN.Pim.WebUI
                 "~/Content/hn-sidebar.css",
                 "~/Content/hn-summary-block.css",
                 "~/Content/hn-readme-box.css",
+                "~/Content/hn-progress.css",
                 "~/Content/font-awesome.css"
                 ));
         }
