@@ -59,6 +59,9 @@ namespace HN.Pim.WebUI.Models
         public int QuantityOfRecords { get; set; }
 
         public int QuantityOfPages { get; set; }
+        public string StyleNameSearch { get; set; }
+
+        public bool IsSearchAreaVisible { get; set; }
         #endregion
 
         #region Init Method

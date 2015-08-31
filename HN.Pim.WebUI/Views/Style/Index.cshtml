@@ -1,4 +1,5 @@
-﻿@using HN.Pim.WebUI.Models
+﻿@using HN.Pim.WebUI.Helpers
+@using HN.Pim.WebUI.Models
 @model StyleModel
 @{
     ViewBag.Title = "Styles";
@@ -7,6 +8,15 @@
 <style>
     .pagination {
         margin-top: -1em;
+    }
+    /* Turn off decoration on header */
+    .panel .panel-heading .panel-title a {
+        text-decoration: none;
+    }
+
+    /* Float the glyph to the right */
+    .hn-panel-toggle {
+        float: right;
     }
 </style>
 
@@ -20,10 +30,373 @@
     @Html.HiddenFor(m => m.SortExpression)
     @Html.HiddenFor(m => m.SortDirection)
     @Html.HiddenFor(m => m.SortDirectionNew)
-    @Html.HiddenFor(m => m.QuantityOfPages,  new { @Id = "hn-pages" })
-  <!-- END HIDDEN FIELDS AREA -->
+    @Html.HiddenFor(m => m.QuantityOfPages, new { @Id = "hn-pages" })
+    <!-- END HIDDEN FIELDS AREA -->
 
-    <div class="row">
+
+    <div class="panel-group" id="search">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse"
+                       data-parent="#search"
+                       href="#filter">Search Panel</a>
+                    <a data-toggle="collapse"
+                       data-parent="#search"
+                       href="#filter"
+                       class="hn-panel-toggle glyphicon glyphicon-plus"></a>
+                </h1>
+            </div>
+            <div id="filter" class="pane-collapse collapse">
+                <div class="panel-body">
+                    <h2>Search</h2>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StyleNameSearch, "Merchandise Brand")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "Merchandise Brand",
+                            "Merchandise Brand",
+                            true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Season")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "Season",
+                            "Season",
+                            true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Style Name")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                        HtmlExtensions.Html5InputTypes.text,
+                        "Style Name",
+                        "Enter a full or partial name to search for",
+                        true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Style Number")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                        HtmlExtensions.Html5InputTypes.text,
+                        "Style Number",
+                        "Enter a full or partial number to search for",
+                        true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Skus")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                        HtmlExtensions.Html5InputTypes.text,
+                        "SKUs",
+                        "Enter a full or partial sku to search for",
+                        true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Skus")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                        HtmlExtensions.Html5InputTypes.text,
+                        "SKUs",
+                        "Enter a full or partial sku to search for",
+                        true, true)
+                        @Html.LabelFor(m => m.StyleNameSearch, "Style Colour")
+                        @Html.TextBox5For(m => m.StyleNameSearch,
+                        HtmlExtensions.Html5InputTypes.text,
+                        "Style Colour",
+                        "Enter a full or partial style colour to search for",
+                        true, true)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse"
+                       data-parent="#search"
+                       href="#display">Data Panel</a>
+                    <a data-toggle="collapse"
+                       data-parent="#results"
+                       href="#display"
+                       class="hn-panel-toggle glyphicon glyphicon-minus"></a>
+                </h1>
+            </div>
+            <div id="display" class="pane-collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MerretStyleID"
+                                                   data-hn-direction="Ascending">
+                                                    Style Id
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MerretDescription"
+                                                   data-hn-direction="Ascending">
+                                                    Description
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="ShortWebDescription"
+                                                   data-hn-direction="Descending">
+                                                    Web Description
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MinPrice"
+                                                   data-hn-direction="Ascending">
+                                                    Min Price
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MaxPrice"
+                                                   data-hn-direction="Ascending">
+                                                    Max Price
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Styles)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.MerretStyleID
+                                                </td>
+                                                <td>
+                                                    @item.MerretDescription
+                                                </td>
+                                                <td>
+                                                    @item.ShortWebDescription
+                                                </td>
+                                                <td>
+                                                    @if (item.MinPrice.HasValue)
+                                                    {@item.MinPrice.Value.ToString("c")
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.MaxPrice.HasValue)
+                                                    {@item.MaxPrice.Value.ToString("c")
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if (Model.IsPagerVisible)
+                {
+                                <ul id="pagination-demo" class="pagination pagination-sm">
+                                    @foreach (PagerItem item in Model.Pages)
+                    {
+                                        <li class="@item.CssClass">
+                                            <a href="#"
+                                               data-hn-action="page"
+                                               data-hn-val="@item.Argument"
+                                               title="@item.Tooltip">
+                                                @Html.Raw(item.Text)
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ** BEGIN SEARCH AREA ** -->
+    //if (Model.IsSearchAreaVisible)
+    //{
+    @*<div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">Search for Styles</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.StyleNameSearch, "Merchandise Brand")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                                HtmlExtensions.Html5InputTypes.text,
+                                "Merchandise Brand",
+                                "Merchandise Brand",
+                                true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Season")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                                HtmlExtensions.Html5InputTypes.text,
+                                "Season",
+                                "Season",
+                                true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Style Name")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "Style Name",
+                            "Enter a full or partial name to search for",
+                            true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Style Number")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "Style Number",
+                            "Enter a full or partial number to search for",
+                            true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Skus")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "SKUs",
+                            "Enter a full or partial sku to search for",
+                            true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Skus")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "SKUs",
+                            "Enter a full or partial sku to search for",
+                            true, true)
+                    @Html.LabelFor(m => m.StyleNameSearch, "Style Colour")
+                    @Html.TextBox5For(m => m.StyleNameSearch,
+                            HtmlExtensions.Html5InputTypes.text,
+                            "Style Colour",
+                            "Enter a full or partial style colour to search for",
+                            true, true)
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button id="btnSearch"
+                        class="btn btn-sm btn-primary"
+                        data-pdsa-action="search">
+                    <i class="glyphicon glyphicon-search"></i>
+                    &nbsp;Search
+                </button>
+                <button id="btnReset"
+                        class="btn btn-sm btn-primary"
+                        data-pdsa-action="resetsearch">
+                    <i class="glyphicon glyphicon-share-alt"></i>
+                    &nbsp;Reset
+                </button>
+            </div>
+        </div>*@
+    @*}*@
+
+    <div class="panel-group" id="results">
+        @*<div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <a data-toggle="collapse"
+                       data-parent="#search"
+                       href="#display">Data Panel</a>
+                    <a data-toggle="collapse"
+                       data-parent="#results"
+                       href="#display"
+                       class="hn-panel-toggle glyphicon glyphicon-minus"></a>
+                </h1>
+            </div>
+            <div id="display" class="pane-collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MerretStyleID"
+                                                   data-hn-direction="Ascending">
+                                                    Style Id
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MerretDescription"
+                                                   data-hn-direction="Ascending">
+                                                    Description
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="ShortWebDescription"
+                                                   data-hn-direction="Descending">
+                                                    Web Description
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MinPrice"
+                                                   data-hn-direction="Ascending">
+                                                    Min Price
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"
+                                                   data-hn-action="sort"
+                                                   data-hn-val="MaxPrice"
+                                                   data-hn-direction="Ascending">
+                                                    Max Price
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Styles)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.MerretStyleID
+                                                </td>
+                                                <td>
+                                                    @item.MerretDescription
+                                                </td>
+                                                <td>
+                                                    @item.ShortWebDescription
+                                                </td>
+                                                <td>
+                                                    @if (item.MinPrice.HasValue)
+                                                    {@item.MinPrice.Value.ToString("c")
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.MaxPrice.HasValue)
+                                                    {@item.MaxPrice.Value.ToString("c")
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if (Model.IsPagerVisible)
+                {
+                                <ul id="pagination-demo" class="pagination pagination-sm">
+                                    @foreach (PagerItem item in Model.Pages)
+                    {
+                                        <li class="@item.CssClass">
+                                            <a href="#"
+                                               data-hn-action="page"
+                                               data-hn-val="@item.Argument"
+                                               title="@item.Tooltip">
+                                                @Html.Raw(item.Text)
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    </div>
+
+
+    @*<div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-condensed table-bordered table-striped table-hover">
@@ -74,52 +447,50 @@
                     <tbody>
                         @foreach (var item in Model.Styles)
                         {
-                            <tr>
-                                <td>
-                                    @item.MerretStyleID
-                                </td>
-                                <td>
-                                    @item.MerretDescription
-                                </td>
-                                <td>
-                                    @item.ShortWebDescription
-                                </td>
-                                <td>
-                                    @if (item.MinPrice.HasValue)
+                        <tr>
+                            <td>
+                                @item.MerretStyleID
+                            </td>
+                            <td>
+                                @item.MerretDescription
+                            </td>
+                            <td>
+                                @item.ShortWebDescription
+                            </td>
+                            <td>
+                                @if (item.MinPrice.HasValue)
                                     {@item.MinPrice.Value.ToString("c")
                                     }
-                                </td>
-                                <td>
-                                    @if (item.MaxPrice.HasValue)
+                            </td>
+                            <td>
+                                @if (item.MaxPrice.HasValue)
                                     {@item.MaxPrice.Value.ToString("c")
                                     }
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
             </div>
             @if (Model.IsPagerVisible)
-            {
-                <ul id="pagination-demo" class="pagination pagination-sm">
-                    @foreach (PagerItem item in Model.Pages)
+                {
+            <ul id="pagination-demo" class="pagination pagination-sm">
+                @foreach (PagerItem item in Model.Pages)
                     {
-                        <li class="@item.CssClass">
-                            <a href="#"
-                               data-hn-action="page"
-                               data-hn-val="@item.Argument"
-                               title="@item.Tooltip">
-                                @Html.Raw(item.Text)
-                            </a>
-                        </li>
+                    <li class="@item.CssClass">
+                        <a href="#"
+                           data-hn-action="page"
+                           data-hn-val="@item.Argument"
+                           title="@item.Tooltip">
+                            @Html.Raw(item.Text)
+                        </a>
+                    </li>
                     }
-                </ul>
+            </ul>
             }
         </div>
-    </div>
-
+    </div>*@
 }
-
 
 @section scripts {
 
@@ -127,51 +498,25 @@
         $("[data-hn-action]").on("click", function (e) {
             e.preventDefault();
 
-            //// Fill in hidden fields with action and argument to post back to model
-            //$("#EventCommand").val($(this).attr("data-hn-action"));
-            //$("#EventArgument").val($(this).attr("data-hn-val"));
+            // Fill in hidden fields with action and argument to post back to model
+            $("#EventCommand").val($(this).attr("data-hn-action"));
+            $("#EventArgument").val($(this).attr("data-hn-val"));
 
-            //// Use the switch statement to get and set any special parameters
-            //switch ($("#EventCommand").val()) {
-            //    case "sort":
-            //        // Store the last sort expression
-            //        $("#LastSortExpression").val($("#SortExpression").val());
-            //        // Get the new sort expression
-            //        $("#SortExpression").val($(this).data("hn-val"));
-            //        // Set the new sort direction
-            //        $("#SortDirectionNew").val($(this).data("hn-direction"));
-            //        break;
-            //}
-
-            //// Submit form with hidden values filled in
-            //$("form").submit();
-        });
-
-       
-        $('#pagination-demo').twbsPagination({
-            totalPages: $("#hn-pages").val(),
-            visiblePages: 28,
-            onPageClick: function (event, page) {
-                debugger;
-                // Fill in hidden fields with action and argument to post back to model
-                $("#EventCommand").val($(this).attr("data-hn-action"));
-                $("#EventArgument").val($(this).attr("data-hn-val"));
-
-                // Use the switch statement to get and set any special parameters
-                switch ($("#EventCommand").val()) {
-                    case "sort":
-                        // Store the last sort expression
-                        $("#LastSortExpression").val($("#SortExpression").val());
-                        // Get the new sort expression
-                        $("#SortExpression").val($(this).data("hn-val"));
-                        // Set the new sort direction
-                        $("#SortDirectionNew").val($(this).data("hn-direction"));
-                        break;
-                }
-
-                // Submit form with hidden values filled in
-                $("form").submit();
+            // Use the switch statement to get and set any special parameters
+            switch ($("#EventCommand").val()) {
+                case "sort":
+                    // Store the last sort expression
+                    $("#LastSortExpression").val($("#SortExpression").val());
+                    // Get the new sort expression
+                    $("#SortExpression").val($(this).data("hn-val"));
+                    // Set the new sort direction
+                    $("#SortDirectionNew").val($(this).data("hn-direction"));
+                    break;
             }
+
+            // Submit form with hidden values filled in
+            $("form").submit();
         });
+
     </script>
 }

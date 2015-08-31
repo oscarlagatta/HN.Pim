@@ -24,7 +24,7 @@ namespace HN.Pim.WebUI.Models
         #region Public Properties  
         public void Init()
         {
-            PageSize = 27;
+            PageSize = 20;
             PageIndex = 0;
             StartingRow = 1;
             TotalPages = 0;
