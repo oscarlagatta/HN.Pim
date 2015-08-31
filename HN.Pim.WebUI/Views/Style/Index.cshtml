@@ -164,53 +164,66 @@
                             <div class="table-responsive">
                                 <table class="table table-condensed table-bordered table-striped table-hover">
                                     <thead>
-                                        <tr>
-                                            <th>
-                                                <a href="#"
-                                                   data-hn-action="sort"
-                                                   data-hn-val="MerretStyleID"
-                                                   data-hn-direction="Ascending">
-                                                    Style Id
-                                                </a>
-                                            </th>
-                                            <th>
-                                                <a href="#"
-                                                   data-hn-action="sort"
-                                                   data-hn-val="MerretDescription"
-                                                   data-hn-direction="Ascending">
-                                                    Description
-                                                </a>
-                                            </th>
-                                            <th>
-                                                <a href="#"
-                                                   data-hn-action="sort"
-                                                   data-hn-val="ShortWebDescription"
-                                                   data-hn-direction="Descending">
-                                                    Web Description
-                                                </a>
-                                            </th>
-                                            <th>
-                                                <a href="#"
-                                                   data-hn-action="sort"
-                                                   data-hn-val="MinPrice"
-                                                   data-hn-direction="Ascending">
-                                                    Min Price
-                                                </a>
-                                            </th>
-                                            <th>
-                                                <a href="#"
-                                                   data-hn-action="sort"
-                                                   data-hn-val="MaxPrice"
-                                                   data-hn-direction="Ascending">
-                                                    Max Price
-                                                </a>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th class="hn-action-button-columns">
+                                            Edit
+                                        </th>
+                                        <th>
+                                            <a href="#"
+                                               data-hn-action="sort"
+                                               data-hn-val="MerretStyleID"
+                                               data-hn-direction="Ascending">
+                                                Style Id
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <a href="#"
+                                               data-hn-action="sort"
+                                               data-hn-val="MerretDescription"
+                                               data-hn-direction="Ascending">
+                                                Description
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <a href="#"
+                                               data-hn-action="sort"
+                                               data-hn-val="ShortWebDescription"
+                                               data-hn-direction="Descending">
+                                                Web Description
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <a href="#"
+                                               data-hn-action="sort"
+                                               data-hn-val="MinPrice"
+                                               data-hn-direction="Ascending">
+                                                Min Price
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <a href="#"
+                                               data-hn-action="sort"
+                                               data-hn-val="MaxPrice"
+                                               data-hn-direction="Ascending">
+                                                Max Price
+                                            </a>
+                                        </th>
+                                        <th class="hn-action-button-column">
+                                            Delete
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model.Styles)
                                         {
                                             <tr>
+                                                <td class="hn-action-button-column">
+                                                    <a href="#" data-pdsa-action="edit"
+                                                       data-pdsa-val="@item.MerretStyleID"
+                                                       class="btn btn-default btn-sm btn-color-primary">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                    </a>
+                                                </td>
                                                 <td>
                                                     @item.MerretStyleID
                                                 </td>
@@ -229,6 +242,14 @@
                                                     @if (item.MaxPrice.HasValue)
                                                     {@item.MaxPrice.Value.ToString("c")
                                                     }
+                                                </td>
+                                                <td class="hn-action-button-column">
+                                                    <a href="#" data-pdsa-action="delete"
+                                                       data-pdsa-val="@item.MerretStyleID"
+                                                       onclick="return confirm('Delete this Product?');"
+                                                       class="btn btn-default btn-sm btn-color-primary">
+                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         }
