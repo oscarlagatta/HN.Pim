@@ -59,6 +59,9 @@ namespace HN.Pim.WebUI.Controllers.MVC
         {
             try
             {
+
+                //System.Threading.Thread.Sleep(2000);
+
                 HandleRequest(styleModel);
 
                 styleModel.Styles = Styles;
@@ -106,6 +109,7 @@ namespace HN.Pim.WebUI.Controllers.MVC
             {
                 case "page":
                 case "sort":
+                case "search":
                     
                     styleModel.QuantityOfRecords = _StyleService.GetTotalOfStyles();
                     // Setup Pager Object
