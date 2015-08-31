@@ -52,6 +52,60 @@
     .hn-summary-block-info .summary-footer a {
       color: white;
     }
+
+
+.hn-summary-block-live {
+    color: #fff;
+    background-color: #FFCC99;
+}
+
+  .hn-summary-block-live .summary-footer {
+    background-color: #FF9900;
+  }
+
+    .hn-summary-block-live .summary-footer a {
+      color: white;
+    }
+
+.hn-summary-block-styles {
+    color: #fff;
+    background-color: #CC6699;
+}
+
+  .hn-summary-block-styles .summary-footer {
+    background-color: #CC00CC;
+  }
+
+    .hn-summary-block-styles .summary-footer a {
+      color: white;
+    }
+
+.hn-summary-block-dc {
+    color: #fff;
+    background-color: #ffdead;
+}
+
+  .hn-summary-block-dc .summary-footer {
+    background-color: gray;
+  }
+
+    .hn-summary-block-dc .summary-footer a {
+      color: white;
+    }
+
+.hn-summary-block-marketing {
+    color: #fff;
+    background-color: #99CC00;
+}
+
+  .hn-summary-block-marketing .summary-footer {
+    background-color: #009900;
+  }
+
+    .hn-summary-block-marketing .summary-footer a {
+      color: white;
+    }
+    
 /* ************************************ */
 /* END: HN Summary Block Color Themes */
 /* ************************************ */
@@ -71,7 +125,7 @@
 
   .hn-summary-block .summary-background i,
   .hn-summary-block .summary-background div {
-    margin-left: -0.4em;
+    margin-left: 0em;
     margin-top: 0.1em;
     font-size: 8em;
     opacity: 0.3;

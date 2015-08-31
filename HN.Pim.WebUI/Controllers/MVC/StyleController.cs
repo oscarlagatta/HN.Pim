@@ -60,7 +60,7 @@ namespace HN.Pim.WebUI.Controllers.MVC
             try
             {
 
-                //System.Threading.Thread.Sleep(2000);
+                System.Threading.Thread.Sleep(2000);
 
                 HandleRequest(styleModel);
 

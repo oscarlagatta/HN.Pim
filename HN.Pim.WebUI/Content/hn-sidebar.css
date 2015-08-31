@@ -80,6 +80,7 @@
 @media all and (max-width: 768px) {
     .hn-sn-wrapper {
         left: -10em;
+        height: 100%;
     }
 
         .hn-sn-wrapper ul li a i {
